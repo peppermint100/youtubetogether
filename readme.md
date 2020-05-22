@@ -6,9 +6,9 @@ Web app that users can watch youtube together with realtime chat
 
 - [x] User list in room
 - [x] fix chat display order
-- [ ] fix submodule
+- [x] fix submodule(fixed by moving repository)
 - [x] socket with play, pause, set video
-- [ ] progress bar
+- [x] progress bar design
 - [ ] socket with progress bar
 - [ ] design
 - [ ] extra features
