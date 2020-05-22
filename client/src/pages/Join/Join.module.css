@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: #6c5ce7; */
+  background-color: #a29bfe;
+}
+
+.bar {
+  width: 100%;
+  height: 8px;
+  background-color: #fff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.joinBox {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 50%;
+  height: 50%;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  color: #6c5ce7;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.joinInput {
+  all: unset;
+  margin-bottom: 1em;
+  background-color: #fff;
+  height: 3em;
+  border-bottom: 2px solid #a29bfe;
+}
+
+.joinAnchor {
+  text-decoration: none;
+  width: 100%;
+}
+
+.joinButton {
+  all: unset;
+  background-color: #6c5ce7;
+  width: 100%;
+  height: 2.5em;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+}
+
+.joinButton:hover {
+  opacity: 0.9;
+}

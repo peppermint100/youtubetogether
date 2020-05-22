@@ -1,0 +1,22 @@
+.toggleButton {
+  all: unset;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 900;
+  font-size: 32px;
+  text-align: center;
+  background-color: #6c5ce7;
+  position: absolute;
+  top: 88%;
+  left: 2%;
+}
+.toggleButton:hover {
+  opacity: 0.8;
+}
+.show {
+}
+
+.hide {
+}

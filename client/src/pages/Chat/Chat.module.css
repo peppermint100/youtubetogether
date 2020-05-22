@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+.videoSection {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatSection {
+  width: 30%;
+  /* min-height:100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 1em;
+  height: 100vh;
+  position: relative;
+}

@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  min-height: 5vh;
+  margin-bottom: 1em;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.chatInput {
+  all: unset;
+  width: 70%;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  margin-right: 0.5em;
+}
+
+.chatButton {
+  all: unset;
+  width: 30%;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  background-color: #6c5ce7;
+  cursor: pointer;
+}
+
+.chatButton:hover {
+  opacity: 0.9;
+}
