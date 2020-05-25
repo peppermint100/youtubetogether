@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import Message from '../Message/Message';
-import { messageProps, queryStringType } from '../../customs/index';
+import { messageProps, queryStringType } from '../../types/index';
 import styles from "./Messages.module.css"
 import { animateScroll } from "react-scroll";
 

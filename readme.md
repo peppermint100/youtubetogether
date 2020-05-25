@@ -9,7 +9,8 @@ Web app that users can watch youtube together with realtime chat
 - [x] fix submodule(fixed by moving repository)
 - [x] socket with play, pause, set video
 - [x] progress bar design
-- [ ] socket with progress bar
+- [ ] socket with progress bar(get full duration)
+- [ ] progress bar update currentTime by every second ToDO!!
 - [ ] design
 - [ ] extra features
 - [ ] responsive

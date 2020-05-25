@@ -10,10 +10,12 @@ export interface user {
     name: string
     room: string
 }
+
 export interface youtubeEventProps {
     target: any;
     data: number;
 }
+
 export interface videoStateProps {
     id: queryStringType,
     isPlaying: boolean

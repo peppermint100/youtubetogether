@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import ToggleButton from '../ToggleButton/ToggleButton';
-import { user } from '../../customs';
+import { user } from '../../types';
 import styles from "./UserList.module.css"
 
 interface Props {

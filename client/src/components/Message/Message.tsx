@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { queryStringType } from '../../customs/index';
+import { queryStringType } from '../../types/index';
 import styles from "./Message.module.css";
 
 interface Props {

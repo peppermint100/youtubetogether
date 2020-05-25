@@ -1,5 +1,5 @@
 import React from 'react';
-import { messageProps, queryStringType } from '../../customs/index';
+import { messageProps, queryStringType } from '../../types/index';
 import styles from "./ChatInput.module.css";
 
 interface Props {

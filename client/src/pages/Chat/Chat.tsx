@@ -4,7 +4,7 @@ import io from "socket.io-client"
 import dotenv from "dotenv";
 import ChatInput from '../../components/ChatInput/ChatInput';
 import Messages from '../../components/Messages/Messages';
-import { messageProps, queryStringType, user, videoStateProps } from '../../customs/index';
+import { messageProps, queryStringType, user, videoStateProps } from '../../types/index';
 import Video from '../../components/Video/Video';
 import styles from "./Chat.module.css"
 import UserList from '../../components/UserList/UserList';
@@ -62,6 +62,10 @@ export default function Chat({ location, history }: Props): ReactElement {
             setVideoState(videoState);
         })
 
+        socket.on('seekTo', () => {
+            console.log('its here')
+        })
+
         socket.on("roomData", (users: {
             users: user[]
         }) => {
@@ -87,10 +91,10 @@ export default function Chat({ location, history }: Props): ReactElement {
                 <Video videoState={videoState} setVideoState={setVideoState} room={room} socketProp={socketState} />
                 <UserList users={users} />
             </div>
-            <div className={styles.chatSection}>
+            {/* <div className={styles.chatSection}>
                 <Messages messages={messages} name={name} />
                 <ChatInput setMessage={setMessage} sendMessage={sendMessage} message={message} />
-            </div>
+            </div> */}
         </div>
     )
 }

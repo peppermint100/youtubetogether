@@ -10,8 +10,12 @@ const server: http.Server = http.createServer(app);
 const io: socketio.Server = socketio(server);
 
 // client types
-import { videoStateProps } from "./client/src/customs"
+import { videoStateProps } from "./client/src/types"
 
+interface hitProps {
+    videoState: videoStateProps
+    callback?: () => void
+}
 
 //routers
 app.use("/chat", chatRouter)
@@ -38,6 +42,12 @@ io.on('connection', socket => {
         console.log('hit button!')
         console.log(videoState)
         io.to(videoState!.room!.toString()).emit('set', { ...videoState })
+    })
+
+    socket.on('seek', (videoState: videoStateProps, callback) => {
+        io.to(videoState!.room!.toString()).emit('set', { ...videoState })
+        callback();
+        socket.emit('seekTo')
     })
 
     socket.on('sendMessage', (message, callback) => {
