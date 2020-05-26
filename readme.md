@@ -12,9 +12,9 @@ Web app that users can watch youtube together with realtime chat
 - [x] socket with progress bar(get full duration)
 - [x] progress bar update currentTime by every second ToDO!!
 - [x] forward, backward socket
-- [ ] design
-- [ ] extra features
-- [ ] responsive
+- [x] react helmet to change icon and header
+- [ ] more design
+- [x] more responsive
 - [ ] deployment
 
 ### socket functions to code

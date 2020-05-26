@@ -1,9 +1,9 @@
-import React, { ReactElement, useState, useEffect, useRef, useMemo } from 'react'
+import React, { ReactElement, useState, useEffect, useRef } from 'react'
 import YouTube, { Options } from 'react-youtube';
 import VideoControl from '../VideoControl/VideoControl';
 import styles from "./Video.module.css"
 import queryString from "query-string";
-import { queryStringType, youtubeEventProps, videoStateProps } from '../../types/index';
+import { queryStringType, videoStateProps } from '../../types/index';
 
 interface Props {
     videoState: videoStateProps
@@ -17,8 +17,8 @@ interface Props {
 }
 
 const opts: Options = {
-    height: '390',
-    width: '640',
+    height: (window.screen.availHeight * 0.6).toString(),
+    width: (window.screen.availWidth * 0.5).toString(),
     playerVars: {
         controls: 0,
         autoplay: 0,
@@ -27,9 +27,8 @@ const opts: Options = {
 }
 
 export default function Video({ videoState, setVideoState, room, socketProp, seek }: Props): ReactElement {
-    const [URL, setURL] = useState<string>("https://www.youtube.com/watch?v=rR4n-0KYeKQ&t=1s");
+    const [URL, setURL] = useState<string>("");
     const videoRef: any = useRef(null);
-    let interval: any;
 
     const updateLocalCurrentTime = async () => {
         if (videoRef !== null && videoRef.current !== null && socketProp) {
@@ -42,8 +41,7 @@ export default function Video({ videoState, setVideoState, room, socketProp, see
     const hitVideo = async () => {
         if (socketProp) {
             const id = Object.values(queryString.parse(URL))[0];
-            console.log("URL", URL)
-            console.log("id", id)
+            setVideoState({ ...videoState, id, room })
             socketProp.emit('hit', { ...videoState, id, room })
         }
     }
@@ -66,16 +64,12 @@ export default function Video({ videoState, setVideoState, room, socketProp, see
         }
     }
 
-    const debug = () => {
-        console.log("videostate : ", videoState);
-        console.log("Ref : ", videoRef.current.internalPlayer)
-    }
 
     useEffect(() => {
         if (videoRef) {
             videoRef.current.internalPlayer.seekTo(seek.payload + videoState.currentTime)
         }
-    }, [seek.refresh])
+    }, [seek.refresh, seek.payload])
 
     useEffect(() => {
         const intervalId = setInterval(updateLocalCurrentTime, 2000)
@@ -98,7 +92,6 @@ export default function Video({ videoState, setVideoState, room, socketProp, see
                     setURL(e.target.value);
                 }} value={URL} />
                 <button className={styles.button} onClick={hitVideo}>Hit</button>
-                <button className={styles.button} onClick={debug}>Debug</button>
             </section>
             <VideoControl videoState={videoState} playVideo={playVideo} pauseVideo={pauseVideo} syncVideoByPayload={syncVideoByPayload} />
         </div>

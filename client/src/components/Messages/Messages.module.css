@@ -1,7 +1,14 @@
 .container {
+  width: 100%;
   height: 90vh;
   overflow-y: scroll;
+  z-index: 10;
 }
 
 .overflow {
+}
+@media only screen and (min-width: 1200px) {
+  .container {
+    flex-direction: column;
+  }
 }

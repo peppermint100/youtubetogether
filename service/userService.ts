@@ -5,6 +5,7 @@ interface User {
     name: string
     room: string
 }
+
 export const addUser = ({ id, name, room }: User) => {
     name = name?.trim().toLowerCase()
     room = room?.trim().toLowerCase()

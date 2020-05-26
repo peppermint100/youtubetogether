@@ -1,6 +1,5 @@
-import React, { ReactElement, useState, useEffect, useRef } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import styled from "styled-components";
-import { videoStateProps } from '../../types/index';
 
 interface Props {
     current: number;
@@ -23,7 +22,6 @@ export default function ProgressBar({ current, total }: Props): ReactElement {
                 <Bar />
                 <ControlBlock ref={controlBlockRef} />
             </Container>
-            <button onClick={() => { console.log(Math.floor((current / total) * 100)) }}>debug</button>
         </>
     )
 }
@@ -31,6 +29,7 @@ export default function ProgressBar({ current, total }: Props): ReactElement {
 // video width 640px
 const Container = styled.div`
     position:relative;
+    align-self:center;
     width:500px; 
     height:20px;
 `

@@ -17,15 +17,13 @@ interface hitProps {
     callback?: () => void
 }
 
-//routers
+//server test router
 app.use("/chat", chatRouter)
 
 // socketio
 io.on('connection', socket => {
-    console.log('we have new connection!');
     socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room })
-        console.log('join')
         if (error) {
             callback(error);
         }
@@ -39,8 +37,6 @@ io.on('connection', socket => {
     })
 
     socket.on('hit', (videoState: videoStateProps) => {
-        console.log('hit button!')
-        console.log(videoState)
         io.to(videoState!.room!.toString()).emit('set', { ...videoState })
     })
 
@@ -52,8 +48,6 @@ io.on('connection', socket => {
     })
 
     socket.on('seek', ({ payload, room }, callback) => {
-        console.log(payload)
-        console.log(room)
         io.to(room).emit('trigger', { payload, room })
     })
 
@@ -61,7 +55,6 @@ io.on('connection', socket => {
         const user = removeUser(socket.id)
         if (user) {
             io.to(user!.room).emit('message', { user: 'admin', text: `${user!.name} has left the room` })
-            console.log(`${user!.name} has left`)
         }
     })
 })

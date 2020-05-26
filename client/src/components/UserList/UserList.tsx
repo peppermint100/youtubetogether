@@ -2,7 +2,8 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import ToggleButton from '../ToggleButton/ToggleButton';
 import { user } from '../../types';
 import styles from "./UserList.module.css"
-
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 interface Props {
     users: user[]
 }
@@ -16,12 +17,15 @@ export default function UserList({ users }: Props): ReactElement {
     useEffect(() => {
 
     }, [users])
+
     return (
         <div>
             {showing && users ?
                 <div className={styles.container}>
                     <div className={styles.bar}>
-                        <button onClick={toggle} className={styles.closeButton}>X</button>
+                        <div className={styles.greenDot}></div>
+                        <button onClick={toggle} className={styles.closeButton}><FontAwesomeIcon icon={faTimes} />
+                        </button>
                     </div>
                     <ul>
                         {users.map((user: user) => {
@@ -32,5 +36,3 @@ export default function UserList({ users }: Props): ReactElement {
         </div>
     )
 }
-
-{/* {Object.values(users).map(user => <div key={user.id}>name : {user.name}</div>)} */ }

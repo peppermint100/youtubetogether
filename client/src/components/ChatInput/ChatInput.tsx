@@ -1,12 +1,11 @@
 import React from 'react';
-import { messageProps, queryStringType } from '../../types/index';
+import { messageProps } from '../../types/index';
 import styles from "./ChatInput.module.css";
 
 interface Props {
     setMessage: (value: messageProps) => void
     sendMessage: (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
     message: messageProps
-
 }
 
 const ChatInput: React.FC<Props> = ({ setMessage, sendMessage, message }) => {
@@ -15,7 +14,6 @@ const ChatInput: React.FC<Props> = ({ setMessage, sendMessage, message }) => {
         setMessage({ user: message.user, text: '' });
     }
     return (
-
         <form className={styles.container}>
             <input
                 className={styles.chatInput}

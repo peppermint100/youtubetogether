@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect, useRef } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import queryString from "query-string"
 import io from "socket.io-client"
 import dotenv from "dotenv";
@@ -6,8 +6,9 @@ import ChatInput from '../../components/ChatInput/ChatInput';
 import Messages from '../../components/Messages/Messages';
 import { messageProps, queryStringType, user, videoStateProps } from '../../types/index';
 import Video from '../../components/Video/Video';
-import styles from "./Chat.module.css"
+import styles from "./Room.module.css"
 import UserList from '../../components/UserList/UserList';
+import ReactHelmet from '../../components/Helmet/Helmet';
 
 dotenv.config();
 
@@ -90,9 +91,10 @@ export default function Chat({ location, history }: Props): ReactElement {
 
     return (
         <div className={styles.container}>
+            <ReactHelmet title={room ? room.toString() : "Youtube-Together"} />
             <div className={styles.videoSection}>
-                <Video seek={seek} videoState={videoState} setVideoState={setVideoState} room={room} socketProp={socketState} />
                 <UserList users={users} />
+                <Video seek={seek} videoState={videoState} setVideoState={setVideoState} room={room} socketProp={socketState} />
             </div>
             <div className={styles.chatSection}>
                 <Messages messages={messages} name={name} />
