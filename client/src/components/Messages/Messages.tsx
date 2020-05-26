@@ -9,7 +9,6 @@ interface Props {
     name: queryStringType
 }
 
-
 export default function Messages({ messages, name }: Props): ReactElement {
     const scrollToBottom = () => {
         animateScroll.scrollToBottom({

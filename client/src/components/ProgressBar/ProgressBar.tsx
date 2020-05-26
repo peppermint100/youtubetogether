@@ -10,27 +10,16 @@ interface Props {
 export default function ProgressBar({ current, total }: Props): ReactElement {
     const controlBlockRef = useRef() as React.MutableRefObject<HTMLInputElement>;
     const timeLineRef = useRef() as React.MutableRefObject<HTMLInputElement>
-    const [time, setTime] = useState<number>(0);
-    const getPositionOfTimeLine = () => {
-        const start = 0
-        const end = 500
-        console.log(timeLineRef.current.offsetWidth);
-    }
-    useEffect(() => {
-        if (controlBlockRef) {
-            const controlBlock = controlBlockRef.current;
-            const progress = Math.floor((current / total) * 100) * 25
-            controlBlock.style.transform = `translateX(${progress}%)`
-        }
-    }, [current])
 
-    const timeLineChange = () => {
-        console.log('you have clicked the timeline')
-        getPositionOfTimeLine();
-    }
+    useEffect(() => {
+        const controlBlock = controlBlockRef.current;
+        const progress: number = Math.floor((Math.floor(current) / Math.floor(total)) * 100) * 25
+        controlBlock.style.transform = `translateX(${progress}%)`
+    }, [current, total])
+
     return (
         <>
-            <Container ref={timeLineRef} onClick={timeLineChange}>
+            <Container ref={timeLineRef}>
                 <Bar />
                 <ControlBlock ref={controlBlockRef} />
             </Container>

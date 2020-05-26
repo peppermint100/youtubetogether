@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement, useState, useEffect, useRef } from 'react'
 import queryString from "query-string"
 import io from "socket.io-client"
 import dotenv from "dotenv";
@@ -30,7 +30,7 @@ export default function Chat({ location, history }: Props): ReactElement {
     const [messages, setMessages] = useState<messageProps[]>([])
     const [socketState, setSocketState] = useState<SocketIOClient.Socket | null>(null);
     const [users, setUsers] = useState<user[]>([]);
-
+    const [seek, setSeek] = useState({ payload: 0, refresh: 0 });
     const [videoState, setVideoState] = useState<videoStateProps>({
         id: null,
         isPlaying: false,
@@ -60,10 +60,7 @@ export default function Chat({ location, history }: Props): ReactElement {
 
         socket.on('set', (videoState: videoStateProps) => {
             setVideoState(videoState);
-        })
 
-        socket.on('seekTo', () => {
-            console.log('its here')
         })
 
         socket.on("roomData", (users: {
@@ -71,6 +68,12 @@ export default function Chat({ location, history }: Props): ReactElement {
         }) => {
             setUsers(users.users);
         });
+
+
+        socket.on('trigger', ({ payload }: { payload: number }) => {
+            setSeek(seek => ({ payload, refresh: seek.refresh + 1 }));
+        })
+
 
         return () => {
             socket.emit('disconnect', { socket })
@@ -88,13 +91,13 @@ export default function Chat({ location, history }: Props): ReactElement {
     return (
         <div className={styles.container}>
             <div className={styles.videoSection}>
-                <Video videoState={videoState} setVideoState={setVideoState} room={room} socketProp={socketState} />
+                <Video seek={seek} videoState={videoState} setVideoState={setVideoState} room={room} socketProp={socketState} />
                 <UserList users={users} />
             </div>
-            {/* <div className={styles.chatSection}>
+            <div className={styles.chatSection}>
                 <Messages messages={messages} name={name} />
                 <ChatInput setMessage={setMessage} sendMessage={sendMessage} message={message} />
-            </div> */}
+            </div>
         </div>
     )
 }

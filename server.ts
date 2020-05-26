@@ -44,17 +44,17 @@ io.on('connection', socket => {
         io.to(videoState!.room!.toString()).emit('set', { ...videoState })
     })
 
-    socket.on('seek', (videoState: videoStateProps, callback) => {
-        io.to(videoState!.room!.toString()).emit('set', { ...videoState })
-        callback();
-        socket.emit('seekTo')
-    })
-
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
         io.to(user!.room).emit('message', { user: user!.name, text: message.text });
         io.to(user!.room).emit('roomData', { users: getUsersInRoom(user!.room) });
         callback()
+    })
+
+    socket.on('seek', ({ payload, room }, callback) => {
+        console.log(payload)
+        console.log(room)
+        io.to(room).emit('trigger', { payload, room })
     })
 
     socket.on('disconnect', () => {

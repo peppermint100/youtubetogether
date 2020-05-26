@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import styles from "./VideoControl.module.css"
 import { youtubeEventProps } from "../../types"
 import { videoStateProps } from '../../types/index';
@@ -8,15 +8,16 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 interface Props {
     playVideo: () => void
     pauseVideo: () => void
-    setCurrentTimeByPayLoad: (payload: number) => void
+    syncVideoByPayload: (payload: number) => void
     videoState: videoStateProps
 }
 
-export default function VideoControl({ videoState, playVideo, pauseVideo, setCurrentTimeByPayLoad }: Props): ReactElement {
+export default function VideoControl({ videoState, playVideo, pauseVideo, syncVideoByPayload }: Props): ReactElement {
 
     const forwardTen = () => {
-        setCurrentTimeByPayLoad(10);
+        syncVideoByPayload(10);
     }
+
     return (
         <div className={styles.container}>
             {!(videoState.currentTime > 0 && videoState.duration > 0) ? (<p>Loading</p>)
