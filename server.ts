@@ -3,6 +3,8 @@ import socketio from "socket.io"
 import http from "http"
 import { chatRouter } from "./routes";
 import { addUser, removeUser, getUser, getUsersInRoom } from './service/userService';
+import cors from "cors";
+
 const PORT = process.env.PORT || 5000
 
 const app: express.Application = express();
@@ -20,6 +22,8 @@ interface hitProps {
 //server test router
 app.use("/chat", chatRouter)
 
+//cors
+app.use(cors());
 // socketio
 io.on('connection', socket => {
     socket.on('join', ({ name, room }, callback) => {
