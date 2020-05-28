@@ -20,7 +20,7 @@ interface hitProps {
 }
 
 //server test router
-app.use("/chat", chatRouter)
+app.use("/", chatRouter)
 
 //cors
 app.use(cors());
