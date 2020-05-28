@@ -16,3 +16,8 @@ Web app that users can watch youtube together with realtime chat
 - [x] more responsive
 - [ ] more design?
 - [ ] deployment
+
+
+## Deployment
+
+https://5ecf814aa6566fca79332bb2--pedantic-montalcini-1baa95.netlify.app
