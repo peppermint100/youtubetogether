@@ -22,7 +22,7 @@
   },
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "nodemon --exec ts-node server.ts",
+    "server": "node --exec ts-node server.ts",
     "dev": "concurrently \"yarn run client\" \"yarn run server\""
   }
 }
