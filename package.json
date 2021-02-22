@@ -7,23 +7,23 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0",
-    "ts-node": "^8.10.1",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
     "@types/socket.io": "^2.1.4",
     "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "nodemon": "^2.0.3",
+    "socket.io": "^2.3.0",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {},
   "scripts": {
     "start": "ts-node ./server.ts",
     "client": "cd client && yarn start",
-    "server": "ts-node server.ts",
+    "server": "nodemon --exec ts-node server.ts",
     "dev": "concurrently \"yarn run client\" \"yarn run server\""
   }
 }

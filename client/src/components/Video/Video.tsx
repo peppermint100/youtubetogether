@@ -21,7 +21,7 @@ const opts: Options = {
     width: (window.screen.availWidth * 0.5).toString(),
     playerVars: {
         controls: 0,
-        autoplay: 0,
+        autoplay: 1,
         disablekb: 0
     }
 }
@@ -29,6 +29,13 @@ const opts: Options = {
 export default function Video({ videoState, setVideoState, room, socketProp, seek }: Props): ReactElement {
     const [URL, setURL] = useState<string>("");
     const videoRef: any = useRef(null);
+
+    const parseUrl = (url: string) => {
+        const ampersandPosition = URL.indexOf('&');
+        if(ampersandPosition != -1) {
+            setURL(URL.substring(0, ampersandPosition));
+        }
+    }
 
     const updateLocalCurrentTime = async () => {
         if (videoRef !== null && videoRef.current !== null && socketProp) {
@@ -41,12 +48,14 @@ export default function Video({ videoState, setVideoState, room, socketProp, see
     const hitVideo = async () => {
         if (socketProp) {
             const id = Object.values(queryString.parse(URL))[0];
+            parseUrl(URL)
             setVideoState({ ...videoState, id, room })
             socketProp.emit('hit', { ...videoState, id, room })
         }
     }
 
     const playVideo = async () => {
+        console.log('playvids')
         if (videoRef !== null && videoRef.current !== null && socketProp !== null) {
             socketProp.emit('hit', { ...videoState, isPlaying: true })
         }
